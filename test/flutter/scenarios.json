@@ -1,9 +1,9 @@
 {
-    "hello": {
+    "install_specific_version": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "hello": {
-                "greeting": "hello"
+            "flutter": {
+                "version": "3.29.3"
             }
         }
     }

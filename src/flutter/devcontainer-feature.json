@@ -1,0 +1,31 @@
+{
+  "name": "Flutter",
+  "id": "flutter",
+  "version": "1.0.0",
+  "description": "Installs Flutter release. This includes that release's Dart SDK.",
+  "options": {
+    "version": {
+        "type": "string",
+        "proposals": [
+            "latest"
+        ],
+        "default": "latest",
+        "description": "Select or enter a Flutter version."
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Dart-Code.dart-code",
+        "Dart-Code.flutter"
+      ],
+      "settings": {
+        "dart.sdkPath": "/usr/local/flutter_sdk/bin/cache/dart-sdk",
+        "flutter.sdkPath": "/usr/local/flutter_sdk"
+      }
+    }
+  },
+  "containerEnv": {
+    "PATH": "/usr/local/flutter_sdk/bin:/usr/local/flutter_sdk/bin/cache/dart-sdk/bin:${PATH}"
+  }
+}
