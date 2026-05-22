@@ -52,6 +52,12 @@ echo "(*) Installing Flutter version ${VERSION}..."
 
 install
 
+# Transfer ownership to the remote user so non-root users can write to the
+# flutter cache
+if [ -n "${_REMOTE_USER}" ] && [ "${_REMOTE_USER}" != "root" ]; then
+    chown -R "${_REMOTE_USER}:${_REMOTE_USER}" "${FLUTTER_INSTALL_DIR}"
+fi
+
 # Clean up
 rm -rf /var/lib/apt/lists/*
 
