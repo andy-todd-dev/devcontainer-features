@@ -52,11 +52,10 @@ echo "(*) Installing Flutter version ${VERSION}..."
 
 install
 
-# Transfer ownership to the remote user so non-root users can write to the
-# flutter cache
-if [ -n "${_REMOTE_USER}" ] && [ "${_REMOTE_USER}" != "root" ]; then
-    chown -R "${_REMOTE_USER}:${_REMOTE_USER}" "${FLUTTER_INSTALL_DIR}"
-fi
+# Allow all users to write to Flutter's cache directory.
+# Flutter writes engine stamps and other files to bin/cache at runtime;
+# without this, non-root users get "Permission denied" errors.
+chmod -R a+rwX "${FLUTTER_INSTALL_DIR}/bin/cache"
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
