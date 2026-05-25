@@ -1,16 +1,44 @@
-name: "Release dev container features & Generate Documentation"
+name: "CI"
 on:
-  workflow_run:
-    workflows: ["CI - Test Features"]
-    types:
-      - completed
+  push:
     branches:
       - main
+  pull_request:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Validate devcontainer-feature.json files"
+        uses: devcontainers/action@v1
+        with:
+          validate-only: "true"
+          base-path-to-features: "./src"
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        features:
+          - flutter
+        baseImage:
+          - debian:latest
+          - mcr.microsoft.com/devcontainers/base:debian
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Install latest devcontainer CLI"
+        run: npm install -g @devcontainers/cli
+
+      - name: "Generating tests for '${{ matrix.features }}' against '${{ matrix.baseImage }}'"
+        run: devcontainer features test --skip-scenarios -f ${{ matrix.features }} -i ${{ matrix.baseImage }} .
+
+  release:
+    needs: [validate, test]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -25,7 +53,7 @@ jobs:
           publish-features: "true"
           base-path-to-features: "./src"
           generate-docs: "false"
-          
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
