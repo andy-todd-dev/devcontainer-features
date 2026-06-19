@@ -24,6 +24,7 @@ jobs:
       matrix:
         features:
           - flutter
+          - android-sdk
         baseImage:
           - debian:latest
           - mcr.microsoft.com/devcontainers/base:debian

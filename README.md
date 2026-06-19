@@ -4,6 +4,10 @@ A collection of [dev container Features](https://containers.dev/implementors/fea
 
 ## Features
 
+### [`android-sdk`](src/android-sdk/README.md)
+
+Installs the Android SDK with configurable platform versions, build tools, NDK, and CMake support.
+
 ### [`flutter`](src/flutter/README.md)
 
 Installs a Flutter release (and its bundled Dart SDK) into the container, with Dart and Flutter VS Code extensions pre-configured.
