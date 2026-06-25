@@ -1,0 +1,39 @@
+{
+  "name": "Dart",
+  "id": "dart",
+  "version": "1.0.0",
+  "description": "Installs the Dart SDK.",
+  "options": {
+    "version": {
+      "type": "string",
+      "proposals": [
+        "latest"
+      ],
+      "default": "latest",
+      "description": "Select or enter a Dart SDK version, e.g. 3.5.0."
+    },
+    "channel": {
+      "type": "string",
+      "proposals": [
+        "stable",
+        "beta",
+        "dev"
+      ],
+      "default": "stable",
+      "description": "Dart release channel to install from."
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Dart-Code.dart-code"
+      ],
+      "settings": {
+        "dart.sdkPath": "/usr/local/dart-sdk"
+      }
+    }
+  },
+  "containerEnv": {
+    "PATH": "/usr/local/dart-sdk/bin:${PATH}"
+  }
+}

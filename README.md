@@ -4,6 +4,10 @@ A collection of [dev container Features](https://containers.dev/implementors/fea
 
 ## Features
 
+### [`dart`](src/dart/README.md)
+
+Installs the Dart SDK with configurable version and release channel, with the Dart VS Code extension pre-configured.
+
 ### [`android-sdk`](src/android-sdk/README.md)
 
 Installs the Android SDK with configurable platform versions, build tools, NDK, and CMake support.

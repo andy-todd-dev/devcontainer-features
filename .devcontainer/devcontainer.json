@@ -11,7 +11,10 @@
                         "url": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json"
                     }
                 ]
-            }
+            },
+            "extensions": [
+                "Anthropic.claude-code"
+            ]
         }
     },
     "features": {
